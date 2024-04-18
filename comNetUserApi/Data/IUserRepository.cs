@@ -7,5 +7,6 @@ namespace comNetUserApi.Data
         public void AddUser(User user);
         public User? GetUser(Guid id);
         public List<User> GetUsers();
+        public User? Validate(UserLoginDto loginDto);
     }
 }

@@ -4,8 +4,16 @@ namespace comNetUserApi.Data
 {
     public class UserRepository : IUserRepository
     {
-        private readonly List<User> users = new List<User>();
-
+        private readonly List<User> users = new()
+        {
+            new User()
+            {
+                Username = "alex",
+                Key = "alexAlex123",
+                Email = "alex.patola@mail.com"
+            }
+        };
+        
         public void AddUser(User user)
         {
             users.Add(user);
@@ -20,6 +28,11 @@ namespace comNetUserApi.Data
         public List<User> GetUsers()
         {
             return users;
+        }
+
+        public User? Validate(UserLoginDto loginDto)
+        {
+            return users.FirstOrDefault(x => x.Key == loginDto.Key && x.Username == loginDto.Username);
         }
     }
 }

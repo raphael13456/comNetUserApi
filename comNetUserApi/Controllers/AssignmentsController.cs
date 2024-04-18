@@ -1,5 +1,6 @@
 ﻿using comNetUserApi.Data;
 using comNetUserApi.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace comNetUserApi.Controllers
@@ -16,6 +17,7 @@ namespace comNetUserApi.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult AddTask([FromBody] AssignmentAddDto dto)
         {
             var hasAssignee = Guid.TryParse(dto.Assignee, out var assigneId);
@@ -41,6 +43,7 @@ namespace comNetUserApi.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult GetTaskForUser(string userId)
         {
             var validUserID = Guid.TryParse(userId, out var id);

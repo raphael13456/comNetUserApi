@@ -1,5 +1,6 @@
 ﻿using comNetUserApi.Data;
 using comNetUserApi.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace comNetUserApi.Controllers
@@ -19,6 +20,7 @@ namespace comNetUserApi.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult AddUser([FromBody] UserAddDto user)
         {
             var newUser = new User()
@@ -34,6 +36,7 @@ namespace comNetUserApi.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult GetUsers()
         {         
             return Ok(_userRepository.GetUsers());
